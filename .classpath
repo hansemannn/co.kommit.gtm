@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+    <classpathentry kind="src" path="src"/>
+    <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+    <classpathentry kind="var" path="ANDROID_SDK/platforms/android-19/android.jar"/>
+    <classpathentry kind="var" path="TITANIUM_SDK/android/titanium.jar"/>
+    <classpathentry kind="var" path="TITANIUM_SDK/android/js.jar"/>
+    <classpathentry kind="var" path="TITANIUM_SDK/android/kroll-apt.jar"/>
+    <classpathentry kind="var" path="TITANIUM_SDK/android/kroll-common.jar"/>
+    <classpathentry kind="var" path="ANDROID_SDK"/>
+    <classpathentry kind="var" path="TITANIUM_SDK"/>
+    <classpathentry kind="lib" path="lib/google-play-services.ja"/>
+    <classpathentry kind="output" path="bin"/>
+</classpath>

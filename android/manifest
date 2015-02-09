@@ -1,0 +1,17 @@
+#
+# this is your module manifest and used by Titanium
+# during compilation, packaging, distribution, etc.
+#
+version: 1.0.0
+apiversion: 2
+description: gtm
+author: Your Name
+license: Specify your license
+copyright: Copyright (c) 2015 by Your Company
+
+# these should not be edited
+name: gtm
+moduleid: co.kommit.gtm
+guid: 4188abcc-a352-49a8-ae17-b98534cb5e7a
+platform: android
+minsdk: 3.4.1.GA
