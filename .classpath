@@ -6,7 +6,7 @@
 	<classpathentry kind="var" path="TITANIUM_SDK/android/titanium.jar"/>
 	<classpathentry kind="var" path="TITANIUM_SDK/android/kroll-apt.jar"/>
 	<classpathentry kind="var" path="TITANIUM_SDK/android/kroll-common.jar"/>
-	<classpathentry kind="lib" path="./android/lib/google-play-services.jar"/>
+	<classpathentry kind="lib" path="android/lib/google-play-services.jar"/>
 	<classpathentry kind="src" path=".apt_generated">
 		<attributes>
 			<attribute name="optional" value="true"/>
