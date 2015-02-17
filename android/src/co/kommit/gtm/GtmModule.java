@@ -13,108 +13,150 @@ import org.appcelerator.titanium.util.TiRHelper.ResourceNotFoundException;
 import android.content.Context;
 import android.content.pm.PackageManager.NameNotFoundException;
 
-import com.google.android.gms.common.api.PendingResult;
-import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.tagmanager.Container;
 import com.google.android.gms.tagmanager.ContainerHolder;
+import com.google.android.gms.tagmanager.DataLayer;
 import com.google.android.gms.tagmanager.TagManager;
+
+import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.common.api.ResultCallback;
 
 @Kroll.module(name = "Gtm", id = "co.kommit.gtm")
 public class GtmModule extends KrollModule {
 
-	private static final String LCAT = "GtmModule";
+    private static final String LCAT = "GtmModule";
 
-	private static final long TIMEOUT_FOR_CONTAINER_OPEN_MILLISECONDS = 2000;
+    private static final long TIMEOUT_FOR_CONTAINER_OPEN_MILLISECONDS = 2000;
 
-	public GtmModule() {
-		super();
-		
-	}
-	
-	private static Context context() {
-		return TiContext.getCurrentTiContext().getAndroidContext();
-	}
-	
-	private int R(String path) {
-		int result = 0;
-		Log.d(LCAT, "Resource id for " + path);
-		
-		try {
-			result = TiRHelper.getAndroidResource(path);
-		} catch (ResourceNotFoundException e) {
-			Log.d(LCAT, "Resource not found " + path);
-		}
-		
-		return result;
-	}
+    public GtmModule() {
+        super();
 
-	@Kroll.onAppCreate
-	public static void onAppCreate(TiApplication app) {
-		Log.d(LCAT, "inside onAppCreate");
-		
-		try {
-			int v = context().getPackageManager().getPackageInfo("com.google.android.gms", 0).versionCode;
-			Log.d(LCAT, "Using google play services version " + v);
-		} catch (NameNotFoundException nnfe) {}		
-	}
-	
-	@Kroll.method
-	public void openScreenEvent(String screenName) {
-		Utils.pushOpenScreenEvent(context(), screenName);
-	}
-	
-	@Kroll.method
-	public void closeScreenEvent(String screenName) {
-		Utils.pushCloseScreenEvent(context(), screenName);
-	}
+    }
 
-	@Kroll.method
-	public void init(String containerId) {
-		Log.d(LCAT, "Loading container ID: " + containerId);
-		
-		TagManager tagManager = TagManager.getInstance(this.getActivity());
-		tagManager.setVerboseLoggingEnabled(true);
+    private static Context context() {
+        return TiContext.getCurrentTiContext().getAndroidContext();
+    }
+
+    private static DataLayer dataLayer() {
+        return TagManager.getInstance(context()).getDataLayer();
+    }
+
+    private int R(String path) {
+        int result = 0;
+        Log.d(LCAT, "Resource id for " + path);
+
+        try {
+            result = TiRHelper.getAndroidResource(path);
+        } catch (ResourceNotFoundException e) {
+            Log.d(LCAT, "Resource not found " + path);
+        }
+
+        return result;
+    }
+
+    @Kroll.onAppCreate
+    public static void onAppCreate(TiApplication app) {
+        Log.d(LCAT, "inside onAppCreate");
+
+        try {
+            int v = context().getPackageManager().getPackageInfo("com.google.android.gms", 0).versionCode;
+            Log.d(LCAT, "Using google play services version " + v);
+        } catch (NameNotFoundException nnfe) {}
+    }
+
+    @Kroll.method
+    public void openScreenEvent(String screenName) {
+        Utils.pushOpenScreenEvent(context(), screenName);
+    }
+
+    @Kroll.method
+    public void closeScreenEvent(String screenName) {
+        Utils.pushCloseScreenEvent(context(), screenName);
+    }
+
+    @Kroll.method
+    public void clickEvent(String key, String buttonName) {
+    	Log.d(LCAT, "clickEvent");
+        dataLayer().push(DataLayer.mapOf("event", "click", "buttonName", buttonName));
+    }
+
+    @Kroll.method
+    public String getString(String key) {
+        Container container = ContainerHolderSingleton.getContainerHolder().getContainer();
+        return container.getString(key);
+    }
+
+    @Kroll.method
+    public boolean getBoolean(String key) {
+        Container container = ContainerHolderSingleton.getContainerHolder().getContainer();
+        return container.getBoolean(key);
+    }
+
+    @Kroll.method
+    public double getDouble(String key) {
+        Container container = ContainerHolderSingleton.getContainerHolder().getContainer();
+        return container.getDouble(key);
+    }
+
+    @Kroll.method
+    public long getLong(String key) {
+        Container container = ContainerHolderSingleton.getContainerHolder().getContainer();
+        return container.getLong(key);
+    }
+
+    @Kroll.method
+    public long getLastRefreshtTime() {
+        Container container = ContainerHolderSingleton.getContainerHolder().getContainer();
+        return container.getLastRefreshTime();
+    }
+
+    @Kroll.method
+    public void init(String containerId) {
+        Log.d(LCAT, "Loading container ID: " + containerId);
+
+        TagManager tagManager = TagManager.getInstance(this.getActivity());
+        tagManager.setVerboseLoggingEnabled(true);
 
 
-		PendingResult<ContainerHolder> pending = null;
-		pending = tagManager.loadContainerPreferNonDefault(containerId, R("raw.defaultcontainer_binary"));
+        PendingResult<ContainerHolder> pending = null;
+        pending = tagManager.loadContainerPreferNonDefault(containerId, R("raw.defaultcontainer_binary"));
 
-		// The onResult method will be called as soon as one of the following
-		// happens:
-		// 1. a saved container is loaded
-		// 2. if there is no saved container, a network container is loaded
-		// 3. the 2-second timeout occurs
-		pending.setResultCallback(new ResultCallback<ContainerHolder>() {
-			
-			@Override
-			public void onResult(ContainerHolder containerHolder) {
-				Log.d(LCAT, "TagManager onResult : " + containerHolder.getStatus().getStatusMessage());
-				
-				ContainerHolderSingleton.setContainerHolder(containerHolder);
-				
-				Container container = containerHolder.getContainer();
-				
-				if (!containerHolder.getStatus().isSuccess()) {
-					Log.d(LCAT, "failure loading container");
-					return;
-				}
-				
-				ContainerHolderSingleton.setContainerHolder(containerHolder);
-				ContainerLoadedCallback.registerCallbacksForContainer(container);
-			}
-			
-		}, TIMEOUT_FOR_CONTAINER_OPEN_MILLISECONDS, TimeUnit.MILLISECONDS);
-	}
+        // The onResult method will be called as soon as one of the following
+        // happens:
+        // 1. a saved container is loaded
+        // 2. if there is no saved container, a network container is loaded
+        // 3. the 2-second timeout occurs
+        pending.setResultCallback(new ResultCallback<ContainerHolder>() {
 
-	private static class ContainerLoadedCallback implements ContainerHolder.ContainerAvailableListener {
-		@Override
-		public void onContainerAvailable(ContainerHolder containerHolder, String containerVersion) {
-			// We load each container when it becomes available.
-			Container container = containerHolder.getContainer();
-			registerCallbacksForContainer(container);
-		}
+            @Override
+            public void onResult(ContainerHolder containerHolder) {
+                Log.d(LCAT, "TagManager onResult : " + containerHolder.getStatus().getStatusMessage());
 
-		public static void registerCallbacksForContainer(Container container) {
-		}
-	}
+                ContainerHolderSingleton.setContainerHolder(containerHolder);
+
+                Container container = containerHolder.getContainer();
+
+                if (!containerHolder.getStatus().isSuccess()) {
+                    Log.d(LCAT, "failure loading container");
+                    return;
+                }
+
+                ContainerHolderSingleton.setContainerHolder(containerHolder);
+                ContainerLoadedCallback.registerCallbacksForContainer(container);
+            }
+
+        }, TIMEOUT_FOR_CONTAINER_OPEN_MILLISECONDS, TimeUnit.MILLISECONDS);
+    }
+
+    private static class ContainerLoadedCallback implements ContainerHolder.ContainerAvailableListener {
+        @Override
+        public void onContainerAvailable(ContainerHolder containerHolder, String containerVersion) {
+            // We load each container when it becomes available.
+            Container container = containerHolder.getContainer();
+            registerCallbacksForContainer(container);
+        }
+
+        public static void registerCallbacksForContainer(Container container) {
+        }
+    }
 }
