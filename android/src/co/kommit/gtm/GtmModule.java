@@ -1,7 +1,12 @@
 package co.kommit.gtm;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
+import org.appcelerator.kroll.KrollDict;
 import org.appcelerator.kroll.KrollModule;
 import org.appcelerator.kroll.annotations.Kroll;
 import org.appcelerator.kroll.common.Log;
@@ -17,9 +22,9 @@ import com.google.android.gms.tagmanager.Container;
 import com.google.android.gms.tagmanager.ContainerHolder;
 import com.google.android.gms.tagmanager.DataLayer;
 import com.google.android.gms.tagmanager.TagManager;
-
 import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.ResultCallback;
+import com.sun.xml.internal.xsom.impl.scd.Iterators.Map;
 
 @Kroll.module(name = "Gtm", id = "co.kommit.gtm")
 public class GtmModule extends KrollModule {
@@ -79,7 +84,31 @@ public class GtmModule extends KrollModule {
     	Log.d(LCAT, "clickEvent");
         dataLayer().push(DataLayer.mapOf("event", "click", "buttonName", buttonName));
     }
-
+    
+    @Kroll.method
+    public void push(KrollDict obj) {
+        dataLayer().push(obj);
+    }
+    
+    @Kroll.method
+    public KrollDict mapOf(Object[] objects) {
+    	Log.d(LCAT, Arrays.toString(objects));
+    	java.util.Map<String, Object> obj = null;
+    	try {
+    		obj = DataLayer.mapOf(objects);
+    		JSONObject json = new JSONObject(obj);
+    		return new KrollDict(json);
+    	} catch (Exception e) {
+    		
+    	}
+    	return null;
+    }
+    
+    @Kroll.method
+    public java.util.List<Object> listOf(Object[] objects) {
+    	return DataLayer.listOf(objects);
+    }
+    
     @Kroll.method
     public String getString(String key) {
         Container container = ContainerHolderSingleton.getContainerHolder().getContainer();
