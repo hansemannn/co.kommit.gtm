@@ -32,6 +32,8 @@ public class GtmModule extends KrollModule {
     private static final String LCAT = "GtmModule";
 
     private static final long TIMEOUT_FOR_CONTAINER_OPEN_MILLISECONDS = 2000;
+    
+    @Kroll.constant public static final Object OBJECT_NOT_PRESENT = DataLayer.OBJECT_NOT_PRESENT;
 
     public GtmModule() {
         super();
@@ -86,13 +88,18 @@ public class GtmModule extends KrollModule {
     }
     
     @Kroll.method
-    public void push(KrollDict obj) {
+    public void pushObject(KrollDict obj) {
         dataLayer().push(obj);
+    }
+    
+    
+    @Kroll.method
+    public void pushKeyValue(String key, Object obj) {
+        dataLayer().push(key, obj);
     }
     
     @Kroll.method
     public KrollDict mapOf(Object[] objects) {
-    	Log.d(LCAT, Arrays.toString(objects));
     	java.util.Map<String, Object> obj = null;
     	try {
     		obj = DataLayer.mapOf(objects);
@@ -105,8 +112,9 @@ public class GtmModule extends KrollModule {
     }
     
     @Kroll.method
-    public java.util.List<Object> listOf(Object[] objects) {
-    	return DataLayer.listOf(objects);
+    public Object[] listOf(Object[] objects) {
+    	Object[] list = DataLayer.listOf(objects).toArray();
+    	return list;
     }
     
     @Kroll.method
