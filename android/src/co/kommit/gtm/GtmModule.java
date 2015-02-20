@@ -40,12 +40,16 @@ public class GtmModule extends KrollModule {
 
     }
 
-    private static Context context() {
+    private Context context() {
         return TiContext.getCurrentTiContext().getAndroidContext();
     }
 
-    private static DataLayer dataLayer() {
+    private DataLayer dataLayer() {
         return TagManager.getInstance(context()).getDataLayer();
+    }
+    
+    private Container container() {
+    	return ContainerHolderSingleton.getContainerHolder().getContainer();
     }
 
     private int R(String path) {
@@ -64,11 +68,6 @@ public class GtmModule extends KrollModule {
     @Kroll.onAppCreate
     public static void onAppCreate(TiApplication app) {
         Log.d(LCAT, "inside onAppCreate");
-
-        try {
-            int v = context().getPackageManager().getPackageInfo("com.google.android.gms", 0).versionCode;
-            Log.d(LCAT, "Using google play services version " + v);
-        } catch (NameNotFoundException nnfe) {}
     }
 
     @Kroll.method
@@ -119,37 +118,36 @@ public class GtmModule extends KrollModule {
     
     @Kroll.method
     public String getString(String key) {
-        Container container = ContainerHolderSingleton.getContainerHolder().getContainer();
-        return container.getString(key);
+        return container().getString(key);
     }
 
     @Kroll.method
     public boolean getBoolean(String key) {
-        Container container = ContainerHolderSingleton.getContainerHolder().getContainer();
-        return container.getBoolean(key);
+        return container().getBoolean(key);
     }
 
     @Kroll.method
     public double getDouble(String key) {
-        Container container = ContainerHolderSingleton.getContainerHolder().getContainer();
-        return container.getDouble(key);
+        return container().getDouble(key);
     }
 
     @Kroll.method
     public long getLong(String key) {
-        Container container = ContainerHolderSingleton.getContainerHolder().getContainer();
-        return container.getLong(key);
+        return container().getLong(key);
     }
 
     @Kroll.method
     public long getLastRefreshtTime() {
-        Container container = ContainerHolderSingleton.getContainerHolder().getContainer();
-        return container.getLastRefreshTime();
+        return container().getLastRefreshTime();
     }
 
     @Kroll.method
     public void init(String containerId) {
         Log.d(LCAT, "Loading container ID: " + containerId);
+	    try {
+	    	int v = context().getPackageManager().getPackageInfo("com.google.android.gms", 0).versionCode;
+	    	Log.d(LCAT, "Using google play services version " + v);
+	    } catch (NameNotFoundException nnfe) {}
 
         TagManager tagManager = TagManager.getInstance(this.getActivity());
         tagManager.setVerboseLoggingEnabled(true);

@@ -1,4 +1,4 @@
-# gtm Module
+# Google Tag Manager Module
 
 ## Description
 
@@ -17,11 +17,11 @@ The gtm variable is a reference to the Module object.
 TODO: If your module has an API, you should document
 the reference here.
 
-### gtm.function
+### gtm.init()
 
 TODO: This is an example of a module function.
 
-### gtm.property
+### gtm.maOf
 
 TODO: This is an example of a module property.
 
