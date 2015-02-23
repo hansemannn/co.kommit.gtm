@@ -2,38 +2,122 @@
 
 ## Description
 
-TODO: Enter your module description here
+Connects to Google Tag Manager for dynamic tag management.
+
+## Set up Google Tag Manager
+
+Create a container in [http://www.google.com/tagmanager/](http://www.google.com/tagmanager/)
+
+For more information [http://www.google.com/tagmanager/get-started.html](http://www.google.com/tagmanager/get-started.html)
 
 ## Accessing the gtm Module
 
 To access this module from JavaScript, you would do the following:
 
-    var gtm = require("co.kommit.gtm");
+```
+var gtm = require("co.kommit.gtm");
+gtm.init("UA-1234567-8");
+```    
 
 The gtm variable is a reference to the Module object.
 
 ## Reference
 
-TODO: If your module has an API, you should document
-the reference here.
+Android API for more information [https://developer.android.com/reference/com/google/android/gms/tagmanager/DataLayer.html](https://developer.android.com/reference/com/google/android/gms/tagmanager/DataLayer.html)
 
-### gtm.init()
+### gtm.mapOf(args)
 
-TODO: This is an example of a module function.
+```
+gtm.mapOf("key1", "value1", "key2", "value2");
 
-### gtm.maOf
+gtm.mapOf("event", "click", "buttonName", "playMovie");
+```
 
-TODO: This is an example of a module property.
+### gtm.listOf([])
+
+```
+gtm.listOf("value1", "value2", "value3", "value4")
+```
+
+
+### gtm.pushObject(object)
+
+```
+gtm.pushObject(gtm.mapOf("event", "click", "buttonName", "playMovie"));
+
+gtm.pushObject(gtm.mapOf("title", "New screen title"));
+
+```
+
+### gtm.pushKeyValue(key, value)
+
+```
+gtm.pushKeyValue("items", gtm.mapOf("key1", "value1", "key2", "value2"));
+
+gtm.pushKeyValue("items", gtm.listOf("value1", "value2", "value3", "value4"));
+```
+
+
+### gtm.openScreenEvent(screenTitle)
+
+```
+gtm.openScreen("mainScreen")
+```
+
+### gtm.closeScreenEvent(screenTitle)
+
+```
+gtm.closeScreen("mainScreen")
+```
 
 ## Usage
 
-TODO: Enter your usage example here
+**Opening a window/screen**
 
-## Author
+```
+$.mainScreen.addEventListener("open", function () {
+    gtm.openScreenEvent("mainScreen");
+});
 
-TODO: Enter your author name, email and other contact
-details you want to share here.
+```
+
+**Closing a window/screen**
+
+```
+$.mainScreen.addEventListener("close", function () {
+    gtm.closeScreenEvent("mainScreen");
+});
+
+```
+
+**Click event**
+
+```
+$.myButton.addEventListener("click", function () {
+    gtm.pushObject(gtm.mapOf("event", "click", "buttonName", "My Button Name"));
+});
+```
 
 ## License
 
-TODO: Enter your license/legal information here.
+The MIT License (MIT)
+
+Copyright (c) 2015 Kommit.co
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
