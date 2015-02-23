@@ -91,10 +91,14 @@ public class GtmModule extends KrollModule {
         dataLayer().push(obj);
     }
     
-    
     @Kroll.method
     public void pushKeyValue(String key, Object obj) {
         dataLayer().push(key, obj);
+    }
+    
+    @Kroll.method
+    public void pushEvent(String eventName, KrollDict obj) {
+        dataLayer().pushEvent(eventName, obj);
     }
     
     @Kroll.method
