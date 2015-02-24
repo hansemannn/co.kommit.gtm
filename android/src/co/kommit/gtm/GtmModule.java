@@ -57,9 +57,9 @@ public class GtmModule extends KrollModule {
         Log.d(LCAT, "Resource id for " + path);
 
         try {
-            result = TiRHelper.getAndroidResource(path);
+            result = TiRHelper.getApplicationResource(path);
         } catch (ResourceNotFoundException e) {
-            Log.d(LCAT, "Resource not found " + path);
+            Log.d(LCAT, "Resource not found " + path + " " + e.getMessage());
         }
 
         return result;
