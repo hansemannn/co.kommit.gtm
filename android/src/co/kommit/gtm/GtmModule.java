@@ -121,10 +121,15 @@ public class GtmModule extends KrollModule {
     }
     
     @Kroll.method
+    public Object dataLayerGet(String key) {
+    	return dataLayer().get(key);
+    }
+    
+    @Kroll.method
     public String getString(String key) {
         return container().getString(key);
     }
-
+    
     @Kroll.method
     public boolean getBoolean(String key) {
         return container().getBoolean(key);
