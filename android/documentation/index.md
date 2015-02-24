@@ -23,13 +23,44 @@ The gtm variable is a reference to the Module object.
 
 ## Reference
 
+## Container methods
+
+Android API for more information [https://developer.android.com/reference/com/google/android/gms/tagmanager/Container.html](https://developer.android.com/reference/com/google/android/gms/tagmanager/Container.html)
+
+### gtm.getString(key)
+
+Returns a string representing the configuration value for the given key.
+
+### gtm.getBoolean(key)
+
+Returns a boolean representing the configuration value for the given key.
+
+### gtm.getLong(key)
+
+Returns a Number representing the configuration value for the given key.
+
+### gtm.getDouble(key)
+
+Returns a Number representing the configuration value for the given key.
+
+### gtm.getLastRefreshtTime(key)
+
+Returns a Number with the last time (in milliseconds since midnight, January 1, 1970 UTC) that this container was refreshed from the network.
+
+
+### gtm.isDefault()
+
+Returns a boolean whether this is a default container, or one refreshed from the server.
+
+
+## Data layer methods
+
 Android API for more information [https://developer.android.com/reference/com/google/android/gms/tagmanager/DataLayer.html](https://developer.android.com/reference/com/google/android/gms/tagmanager/DataLayer.html)
 
 ### gtm.mapOf(args)
 
 ```
 gtm.mapOf("key1", "value1", "key2", "value2");
-
 gtm.mapOf("event", "click", "buttonName", "playMovie");
 ```
 
@@ -44,7 +75,6 @@ gtm.listOf("value1", "value2", "value3", "value4")
 
 ```
 gtm.pushObject(gtm.mapOf("event", "click", "buttonName", "playMovie"));
-
 gtm.pushObject(gtm.mapOf("title", "New screen title"));
 
 ```
@@ -53,7 +83,6 @@ gtm.pushObject(gtm.mapOf("title", "New screen title"));
 
 ```
 gtm.pushKeyValue("items", gtm.mapOf("key1", "value1", "key2", "value2"));
-
 gtm.pushKeyValue("items", gtm.listOf("value1", "value2", "value3", "value4"));
 ```
 
@@ -78,7 +107,6 @@ gtm.closeScreen("mainScreen")
 $.mainScreen.addEventListener("open", function () {
     gtm.openScreenEvent("mainScreen");
 });
-
 ```
 
 **Closing a window/screen**
@@ -87,7 +115,6 @@ $.mainScreen.addEventListener("open", function () {
 $.mainScreen.addEventListener("close", function () {
     gtm.closeScreenEvent("mainScreen");
 });
-
 ```
 
 **Click event**
