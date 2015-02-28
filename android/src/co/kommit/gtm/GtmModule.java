@@ -70,21 +70,6 @@ public class GtmModule extends KrollModule {
         Log.d(LCAT, "inside onAppCreate");
     }
 
-    @Kroll.method
-    public void openScreenEvent(String screenName) {
-        Utils.pushOpenScreenEvent(context(), screenName);
-    }
-
-    @Kroll.method
-    public void closeScreenEvent(String screenName) {
-        Utils.pushCloseScreenEvent(context(), screenName);
-    }
-
-    @Kroll.method
-    public void clickEvent(String key, String buttonName) {
-    	Log.d(LCAT, "clickEvent");
-        dataLayer().push(DataLayer.mapOf("event", "click", "buttonName", buttonName));
-    }
     
     @Kroll.method
     public void pushObject(KrollDict obj) {
@@ -92,34 +77,34 @@ public class GtmModule extends KrollModule {
     }
     
     @Kroll.method
-    public void pushKeyValue(String key, Object obj) {
+    public void pushValue(String key, Object obj) {
         dataLayer().push(key, obj);
     }
     
-    @Kroll.method
-    public void pushEvent(String eventName, KrollDict obj) {
-        dataLayer().pushEvent(eventName, obj);
-    }
+//    @Kroll.method
+//    public void pushEvent(String eventName, KrollDict obj) {
+//        dataLayer().pushEvent(eventName, obj);
+//    }
     
-    @Kroll.method
-    public KrollDict mapOf(Object[] objects) {
-    	java.util.Map<String, Object> obj = null;
-    	try {
-    		obj = DataLayer.mapOf(objects);
-    		JSONObject json = new JSONObject(obj);
-    		return new KrollDict(json);
-    	} catch (Exception e) {
-    		
-    	}
-    	return null;
-    }
-    
-    @Kroll.method
-    public Object[] listOf(Object[] objects) {
-    	Object[] list = DataLayer.listOf(objects).toArray();
-    	return list;
-    }
-    
+//    @Kroll.method
+//    public KrollDict mapOf(Object[] objects) {
+//    	java.util.Map<String, Object> obj = null;
+//    	try {
+//    		obj = DataLayer.mapOf(objects);
+//    		JSONObject json = new JSONObject(obj);
+//    		return new KrollDict(json);
+//    	} catch (Exception e) {
+//    		
+//    	}
+//    	return null;
+//    }
+//    
+//    @Kroll.method
+//    public Object[] listOf(Object[] objects) {
+//    	Object[] list = DataLayer.listOf(objects).toArray();
+//    	return list;
+//    }
+//    
     @Kroll.method
     public Object dataLayerGet(String key) {
     	return dataLayer().get(key);
