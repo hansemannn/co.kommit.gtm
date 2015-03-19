@@ -108,15 +108,15 @@
 #pragma Public APIs
 
 -(void)init: (id)args
-{	
+{
 	ENSURE_ARG_COUNT(args, 1);
 	NSString *containerId = [TiUtils stringValue:[args objectAtIndex:0]];
 	NSLog(@"[init] %@ ", containerId);
-    
+
     self.tagManager = [TAGManager instance];
-    
+
     [self.tagManager.logger setLogLevel:kTAGLoggerLogLevelVerbose];
-    
+
     [TAGContainerOpener openContainerWithId:containerId
                                  tagManager:self.tagManager
                                    openType:kTAGOpenTypePreferFresh
@@ -125,60 +125,60 @@
 }
 
 -(NSString*)getString: (id)args
-{	
+{
 	ENSURE_ARG_COUNT(args, 1);
 	NSString *key = [TiUtils stringValue:[args objectAtIndex:0]];
 	NSLog(@"[getString] %@ ", key);
-	
+
 	return key;
 }
 
 -(NSNumber*)getBoolean: (id)args
-{	
+{
 	ENSURE_ARG_COUNT(args, 1);
 	NSString *key = [TiUtils stringValue:[args objectAtIndex:0]];
 	NSLog(@"[getString] %@ ", key);
-	
+
 	return NUMBOOL(1);
 }
 
 -(NSNumber*)getLong: (id)args
-{	
+{
 	ENSURE_ARG_COUNT(args, 1);
 	NSString *key = [TiUtils stringValue:[args objectAtIndex:0]];
 	NSLog(@"[getLong] %@ ", key);
-	
+
 	return NUMINT(1);
 }
 
 -(NSNumber*)getDouble: (id)args
-{	
+{
 	ENSURE_ARG_COUNT(args, 1);
 	NSString *key = [TiUtils stringValue:[args objectAtIndex:0]];
 	NSLog(@"[getLong] %@ ", key);
-	
+
 	return NUMDOUBLE(1.0);
 }
 
 -(NSNumber*)getLastRefreshtTime: (id)args
-{	
-	
+{
+
 	return NUMINT(1);
 }
 
 -(void)pushObject: (id)args
-{	
+{
 	ENSURE_SINGLE_ARG(args,NSDictionary);
-    
+
     TAGDataLayer *dataLayer = [TAGManager instance].dataLayer;
     [dataLayer push:args];
-    
+
 	NSLog(@"[pushObject] %@ ", args);
 }
 
 
 -(void)pushValue: (id)args
-{	
+{
 	NSLog(@"[pushValue] %@ ", args);
 }
 

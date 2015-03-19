@@ -248,6 +248,7 @@ def package_module(manifest,mf,config):
 	if os.path.exists(exports_file):
 		zf.write(exports_file, '%s/%s' % (modulepath, exports_file))
 	zf.close()
+	os.rename(modulezip, "dist/%s" % modulezip)
 
 
 if __name__ == '__main__':

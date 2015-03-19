@@ -1,6 +1,6 @@
 dependencies: \
-  /Users/cristian/Code/gtm-solution/gtm-ios/iphone/Classes/CoKommitGtmModule.m \
-  /Users/cristian/Code/gtm-solution/gtm-ios/iphone/Classes/CoKommitGtmModule.h \
+  /Users/cristian/Code/gtm-solution/gtm/iphone/Classes/CoKommitGtmModule.m \
+  /Users/cristian/Code/gtm-solution/gtm/iphone/Classes/CoKommitGtmModule.h \
   /Users/cristian/Library/Application\ Support/Titanium/mobilesdk/osx/3.5.0.GA/iphone/include/TiModule.h \
   /Users/cristian/Library/Application\ Support/Titanium/mobilesdk/osx/3.5.0.GA/iphone/include/TiProxy.h \
   /Users/cristian/Library/Application\ Support/Titanium/mobilesdk/osx/3.5.0.GA/iphone/include/TiBase.h \
@@ -28,11 +28,11 @@ dependencies: \
   /Users/cristian/Library/Application\ Support/Titanium/mobilesdk/osx/3.5.0.GA/iphone/include/TiFile.h \
   /Users/cristian/Library/Application\ Support/Titanium/mobilesdk/osx/3.5.0.GA/iphone/include/TiBuffer.h \
   /Users/cristian/Library/Application\ Support/Titanium/mobilesdk/osx/3.5.0.GA/iphone/include/TiBlob.h \
-  /Users/cristian/Code/gtm-solution/gtm-ios/iphone/GTMLib/GoogleTagManager/TAGContainer.h \
-  /Users/cristian/Code/gtm-solution/gtm-ios/iphone/GTMLib/GoogleTagManager/TAGContainerOpener.h \
-  /Users/cristian/Code/gtm-solution/gtm-ios/iphone/GTMLib/GoogleTagManager/TAGLogger.h \
-  /Users/cristian/Code/gtm-solution/gtm-ios/iphone/GTMLib/GoogleTagManager/TAGManager.h \
-  /Users/cristian/Code/gtm-solution/gtm-ios/iphone/GTMLib/GoogleTagManager/TAGDataLayer.h \
+  /Users/cristian/Code/gtm-solution/gtm/iphone/GTMLib/GoogleTagManager/TAGContainer.h \
+  /Users/cristian/Code/gtm-solution/gtm/iphone/GTMLib/GoogleTagManager/TAGContainerOpener.h \
+  /Users/cristian/Code/gtm-solution/gtm/iphone/GTMLib/GoogleTagManager/TAGLogger.h \
+  /Users/cristian/Code/gtm-solution/gtm/iphone/GTMLib/GoogleTagManager/TAGManager.h \
+  /Users/cristian/Code/gtm-solution/gtm/iphone/GTMLib/GoogleTagManager/TAGDataLayer.h \
   /Users/cristian/Library/Application\ Support/Titanium/mobilesdk/osx/3.5.0.GA/iphone/include/TiHost.h \
   /Users/cristian/Library/Application\ Support/Titanium/mobilesdk/osx/3.5.0.GA/iphone/include/Bridge.h \
   /Users/cristian/Library/Application\ Support/Titanium/mobilesdk/osx/3.5.0.GA/iphone/include/TiStylesheet.h

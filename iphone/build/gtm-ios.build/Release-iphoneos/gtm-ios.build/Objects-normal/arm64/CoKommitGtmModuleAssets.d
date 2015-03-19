@@ -1,3 +1,3 @@
 dependencies: \
-  /Users/cristian/Code/gtm-solution/gtm-ios/iphone/Classes/CoKommitGtmModuleAssets.m \
-  /Users/cristian/Code/gtm-solution/gtm-ios/iphone/Classes/CoKommitGtmModuleAssets.h
+  /Users/cristian/Code/gtm-solution/gtm/iphone/Classes/CoKommitGtmModuleAssets.m \
+  /Users/cristian/Code/gtm-solution/gtm/iphone/Classes/CoKommitGtmModuleAssets.h
