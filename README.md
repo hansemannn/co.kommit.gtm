@@ -15,8 +15,8 @@ For more information [http://www.google.com/tagmanager/get-started.html](http://
 To access this module from JavaScript, you would do the following:
 
 ```
-var gtm = require("co.kommit.gtm");
-gtm.init("UA-1234567-8");
+var GTM = require("co.kommit.gtm");
+GTM.init("UA-1234567-8");
 ```
 
 The gtm variable is a reference to the Module object.
@@ -25,78 +25,38 @@ The gtm variable is a reference to the Module object.
 
 ## Container methods
 
-Android API for more information [https://developer.android.com/reference/com/google/android/gms/tagmanager/Container.html](https://developer.android.com/reference/com/google/android/gms/tagmanager/Container.html)
-
-### gtm.getString(key)
+### GTM.getString(key)
 
 Returns a string representing the configuration value for the given key.
 
-### gtm.getBoolean(key)
+### GTM.getBoolean(key)
 
 Returns a boolean representing the configuration value for the given key.
 
-### gtm.getLong(key)
+### GTM.getLong(key)
 
 Returns a Number representing the configuration value for the given key.
 
-### gtm.getDouble(key)
+### GTM.getDouble(key)
 
 Returns a Number representing the configuration value for the given key.
 
-### gtm.getLastRefreshtTime(key)
+### GTM.getLastRefreshtTime(key)
 
 Returns a Number with the last time (in milliseconds since midnight, January 1, 1970 UTC) that this container was refreshed from the network.
 
-
-### gtm.isDefault()
+### GTM.isDefault()
 
 Returns a boolean whether this is a default container, or one refreshed from the server.
 
 
 ## Data layer methods
 
-Android API for more information [https://developer.android.com/reference/com/google/android/gms/tagmanager/DataLayer.html](https://developer.android.com/reference/com/google/android/gms/tagmanager/DataLayer.html)
 
-### gtm.mapOf(args)
-
-```
-gtm.mapOf("key1", "value1", "key2", "value2");
-gtm.mapOf("event", "click", "buttonName", "playMovie");
-```
-
-### gtm.listOf([])
+### GTM.pushObject(object)
 
 ```
-gtm.listOf("value1", "value2", "value3", "value4")
-```
-
-
-### gtm.pushObject(object)
-
-```
-gtm.pushObject(gtm.mapOf("event", "click", "buttonName", "playMovie"));
-gtm.pushObject(gtm.mapOf("title", "New screen title"));
-
-```
-
-### gtm.pushKeyValue(key, value)
-
-```
-gtm.pushKeyValue("items", gtm.mapOf("key1", "value1", "key2", "value2"));
-gtm.pushKeyValue("items", gtm.listOf("value1", "value2", "value3", "value4"));
-```
-
-
-### gtm.openScreenEvent(screenTitle)
-
-```
-gtm.openScreen("mainScreen")
-```
-
-### gtm.closeScreenEvent(screenTitle)
-
-```
-gtm.closeScreen("mainScreen")
+GTM.pushObject({"event", "click", "buttonName", "playMovie"});
 ```
 
 ## Usage
@@ -105,15 +65,7 @@ gtm.closeScreen("mainScreen")
 
 ```
 $.mainScreen.addEventListener("open", function () {
-    gtm.openScreenEvent("mainScreen");
-});
-```
-
-**Closing a window/screen**
-
-```
-$.mainScreen.addEventListener("close", function () {
-    gtm.closeScreenEvent("mainScreen");
+   GTM.pushObject({"event": "openScreen", "screenName": "mainScreen"});
 });
 ```
 
@@ -121,7 +73,7 @@ $.mainScreen.addEventListener("close", function () {
 
 ```
 $.myButton.addEventListener("click", function () {
-    gtm.pushObject(gtm.mapOf("event", "click", "buttonName", "My Button Name"));
+    GTM.pushObject({"event": "click", "buttonName": "refresh"});
 });
 ```
 
@@ -141,6 +93,10 @@ cd android && ant
 ```
 cd iphone && python build.py
 ```
+
+## TODO
+
+Support for multiple containers
 
 
 ## License

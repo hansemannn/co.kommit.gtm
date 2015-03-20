@@ -6,15 +6,23 @@
  */
 
 #import "TiModule.h"
+#import "TiBase.h"
+#import "TiHost.h"
+#import "TiUtils.h"
 #import "TAGContainer.h"
 #import "TAGContainerOpener.h"
 #import "TAGLogger.h"
 #import "TAGManager.h"
 #import "TAGDataLayer.h"
 
+@class TAGManager;
+@class TAGContainer;
+
 @interface CoKommitGtmModule : TiModule{}
 
-@property (nonatomic, strong) TAGManager *tagManager;
-@property (nonatomic, strong) TAGContainer *container;
+@property (nonatomic, retain) TAGManager *tagManager;
+@property (nonatomic, retain) TAGContainer *tagContainer;
+
+- (void) containerAvailable:(TAGContainer *)container;
 
 @end
