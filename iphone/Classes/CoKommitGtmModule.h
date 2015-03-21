@@ -18,7 +18,7 @@
 @class TAGManager;
 @class TAGContainer;
 
-@interface CoKommitGtmModule : TiModule{}
+@interface CoKommitGtmModule : TiModule <TAGContainerOpenerNotifier> {}
 
 @property (nonatomic, strong) TAGManager *tagManager;
 @property (nonatomic, strong) TAGContainer *tagContainer;
