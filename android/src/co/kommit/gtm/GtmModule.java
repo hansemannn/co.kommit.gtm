@@ -32,7 +32,7 @@ public class GtmModule extends KrollModule {
     private static final String LCAT = "GtmModule";
 
     private static final long TIMEOUT_FOR_CONTAINER_OPEN_MILLISECONDS = 2000;
-    
+
     @Kroll.constant public static final Object OBJECT_NOT_PRESENT = DataLayer.OBJECT_NOT_PRESENT;
 
     public GtmModule() {
@@ -47,7 +47,7 @@ public class GtmModule extends KrollModule {
     private DataLayer dataLayer() {
         return TagManager.getInstance(context()).getDataLayer();
     }
-    
+
     private Container container() {
     	return ContainerHolderSingleton.getContainerHolder().getContainer();
     }
@@ -70,51 +70,27 @@ public class GtmModule extends KrollModule {
         Log.d(LCAT, "inside onAppCreate");
     }
 
-    
+
     @Kroll.method
     public void pushObject(KrollDict obj) {
         dataLayer().push(obj);
     }
-    
+
     @Kroll.method
     public void pushValue(String key, Object obj) {
         dataLayer().push(key, obj);
     }
-    
-//    @Kroll.method
-//    public void pushEvent(String eventName, KrollDict obj) {
-//        dataLayer().pushEvent(eventName, obj);
-//    }
-    
-//    @Kroll.method
-//    public KrollDict mapOf(Object[] objects) {
-//    	java.util.Map<String, Object> obj = null;
-//    	try {
-//    		obj = DataLayer.mapOf(objects);
-//    		JSONObject json = new JSONObject(obj);
-//    		return new KrollDict(json);
-//    	} catch (Exception e) {
-//    		
-//    	}
-//    	return null;
-//    }
-//    
-//    @Kroll.method
-//    public Object[] listOf(Object[] objects) {
-//    	Object[] list = DataLayer.listOf(objects).toArray();
-//    	return list;
-//    }
-//    
+
     @Kroll.method
     public Object dataLayerGet(String key) {
     	return dataLayer().get(key);
     }
-    
+
     @Kroll.method
     public String getString(String key) {
         return container().getString(key);
     }
-    
+
     @Kroll.method
     public boolean getBoolean(String key) {
         return container().getBoolean(key);

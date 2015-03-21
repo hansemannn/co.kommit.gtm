@@ -1,8 +1,8 @@
 /**
- * gtm-ios
+ * Google Tag Manager Titanium Module
  *
- * Created by Your Name
- * Copyright (c) 2015 Your Company. All rights reserved.
+ * Created by Cristian Cepeda <cristian.cepeda@kommit.co>
+ * Copyright (c) 2015 Kommit.co. All rights reserved.
  */
 
 #import "TiModule.h"
@@ -20,9 +20,9 @@
 
 @interface CoKommitGtmModule : TiModule{}
 
-@property (nonatomic, retain) TAGManager *tagManager;
-@property (nonatomic, retain) TAGContainer *tagContainer;
+@property (nonatomic, strong) TAGManager *tagManager;
+@property (nonatomic, strong) TAGContainer *tagContainer;
 
 - (void) containerAvailable:(TAGContainer *)container;
-
+- (TAGDataLayer *) dataLayer;
 @end

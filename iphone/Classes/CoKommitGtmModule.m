@@ -1,8 +1,8 @@
 /**
- * gtm-ios
+ * Google Tag Manager Titanium Module
  *
- * Created by Your Name
- * Copyright (c) 2015 Your Company. All rights reserved.
+ * Created by Cristian Cepeda <cristian.cepeda@kommit.co>
+ * Copyright (c) 2015 Kommit.co. All rights reserved.
  */
 
 #import "CoKommitGtmModule.h"
@@ -18,6 +18,11 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         self.tagContainer = tagContainer;
     });
+}
+
+- (TAGDataLayer *) dataLayer {
+    TAGDataLayer *dataLayer = [TAGManager instance].dataLayer;
+    return dataLayer;
 }
 
 // this is generated for your module, please do not change it
@@ -112,30 +117,36 @@
 
 -(NSString *) getString:(id)args
 {
-    ENSURE_ARG_COUNT(args, 1);
     NSString *key = [TiUtils stringValue:[args objectAtIndex:0]];
-    return key;
+    NSString *value = [self.tagContainer stringForKey:key];
+
+    return value;
 }
 
 -(NSNumber *) getBoolean:(id)args
 {
-    ENSURE_UI_THREAD_1_ARG(args);
     NSString *key = [TiUtils stringValue:[args objectAtIndex:0]];
-    return NUMBOOL(1);
+    BOOL value = [self.tagContainer booleanForKey:key];
+
+    return NUMBOOL(value);
 }
 
 -(NSNumber *) getLong:(id)args
 {
     ENSURE_ARG_COUNT(args, 1);
     NSString *key = [TiUtils stringValue:[args objectAtIndex:0]];
-    return NUMINT(1);
+    int64_t value = [self.tagContainer int64ForKey:key];
+
+    return NUMLONG(value);
 }
 
 -(NSNumber *) getDouble:(id)args
 {
     ENSURE_ARG_COUNT(args, 1);
     NSString *key = [TiUtils stringValue:[args objectAtIndex:0]];
-    return NUMDOUBLE(1.0);
+    double value = [self.tagContainer doubleForKey:key];
+
+    return NUMDOUBLE(value);
 }
 
 -(NSNumber *) getLastRefreshTime:(id)args
@@ -147,14 +158,25 @@
 -(void) pushObject:(id)args
 {
     ENSURE_SINGLE_ARG(args, NSDictionary);
-    TAGDataLayer *dataLayer = [TAGManager instance].dataLayer;
-    [dataLayer push:args];
+    [[self dataLayer] push:args];
 }
 
 -(void) pushValue:(id)args
 {
-    ENSURE_UI_THREAD_1_ARG(args);
-    NSLog(@"[pushValue] %@ ", args);
+    ENSURE_ARG_COUNT(args, 1);
+    NSString *key   = [TiUtils stringValue:[args objectAtIndex:0]];
+    NSObject *value = [args objectAtIndex:1];
+
+    [[self dataLayer] pushValue: value forKey: key];
+}
+
+-(NSObject *) dataLayerGet:(id)args
+{
+    ENSURE_ARG_COUNT(args, 1);
+    NSString *key    = [TiUtils stringValue:[args objectAtIndex:0]];
+    NSObject *object = [[self dataLayer] get:key];
+
+    return object;
 }
 
 @end
