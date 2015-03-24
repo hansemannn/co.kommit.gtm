@@ -1,4 +1,4 @@
-# Google Tag Manager Module
+# Kommit Google Tag Manager Module
 
 ## Description
 
@@ -38,7 +38,7 @@ To access this module from JavaScript, you would do the following:
 
 ```
 var GTM = require("co.kommit.gtm");
-GTM.init("UA-1234567-8");
+GTM.init("GTM-XXXX");
 ```
 
 The gtm variable is a reference to the Module object.
@@ -119,14 +119,18 @@ cd iphone && python build.py
 ## TODO
 
 - Support for multiple containers
-- Add default container data for iOS
 - Container preview
-
 
 ## Recomendations
 
 - Download container data from your Tag Manager account
 
+## Example Application
+
+```
+cd example
+ti build -p ios
+```
 
 ## License
 
@@ -151,5 +155,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
-
-
