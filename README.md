@@ -67,18 +67,19 @@ Returns a Number representing the configuration value for the given key.
 
 Returns a Number with the last time (in milliseconds since midnight, January 1, 1970 UTC) that this container was refreshed from the network.
 
-### GTM.isDefault()
-
-Returns a boolean whether this is a default container, or one refreshed from the server.
-
 
 ## Data layer methods
-
 
 ### GTM.pushObject(object)
 
 ```
 GTM.pushObject({"event", "click", "buttonName", "playMovie"});
+```
+
+### GTM.pushValue(key, object)
+
+```
+GTM.pushObject("foo", {"bar": "baz"});
 ```
 
 ## Usage
