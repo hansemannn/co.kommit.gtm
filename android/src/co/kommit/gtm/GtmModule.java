@@ -37,7 +37,6 @@ public class GtmModule extends KrollModule {
 
     public GtmModule() {
         super();
-
     }
 
     private Context context() {
@@ -69,7 +68,6 @@ public class GtmModule extends KrollModule {
     public static void onAppCreate(TiApplication app) {
         Log.d(LCAT, "inside onAppCreate");
     }
-
 
     @Kroll.method
     public void pushObject(KrollDict obj) {

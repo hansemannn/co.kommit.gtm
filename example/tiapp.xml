@@ -42,8 +42,8 @@
     </android>
     <mobileweb/>
     <modules>
-        <module platform="android" version="1.0.0">co.kommit.gtm</module>
-        <module platform="iphone" version="1.0.0">co.kommit.gtm</module>
+        <module platform="android" version="0.0.1">co.kommit.gtm</module>
+        <module platform="iphone" version="0.0.1">co.kommit.gtm</module>
     </modules>
     <deployment-targets>
         <target device="android">true</target>

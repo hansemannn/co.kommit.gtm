@@ -9,7 +9,7 @@ import com.google.android.gms.tagmanager.TagManager;
  * Utility class.
  */
 public class Utils {
-	
+
     /**
      * Push an "openScreen" event with the given screen name. Tags that match that event will fire.
      */

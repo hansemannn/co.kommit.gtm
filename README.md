@@ -2,7 +2,7 @@
 
 ## Description
 
-Connects to Google Tag Manager for dynamic tag management.
+Connects to Google Tag Manager for dynamic tag management. v0.0.1
 
 ## Set up Google Tag Manager
 
@@ -120,6 +120,8 @@ cd iphone && python build.py
 
 - Support for multiple containers
 - Container preview
+- Callbacks
+- Migrate Cute Animals example from Android & iOS SDK :)
 
 ## Recomendations
 
@@ -155,3 +157,5 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
+
+## Feel free to comment and help out! :)

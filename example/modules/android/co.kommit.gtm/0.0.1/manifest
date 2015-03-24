@@ -1,0 +1,17 @@
+#
+# this is your module manifest and used by Titanium
+# during compilation, packaging, distribution, etc.
+#
+version: 0.0.1
+apiversion: 2
+description: Connects to Google Tag Manager for dynamic tag management. v0.0.1
+author: Cristian Cepeda <cristian.cepeda@kommit.co>
+license: MIT
+copyright: Copyright (c) 2015 by Kommit
+
+# these should not be edited
+name: gtm
+moduleid: co.kommit.gtm
+guid: 19c0f41d-f2c0-4c48-b41a-5ce97e35ec99
+platform: android
+minsdk: 3.4.1.GA

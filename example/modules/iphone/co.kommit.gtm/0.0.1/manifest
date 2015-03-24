@@ -1,0 +1,18 @@
+#
+# this is your module manifest and used by Titanium
+# during compilation, packaging, distribution, etc.
+#
+version: 0.0.1
+apiversion: 2
+architectures: armv7 arm64 i386 x86_64
+description: Connects to Google Tag Manager for dynamic tag management. v0.0.1
+author: Cristian Cepeda <cristian.cepeda@kommit.co>
+license: MIT
+copyright: Copyright (c) 2015 by Kommit
+
+# these should not be edited
+name: gtm
+moduleid: co.kommit.gtm
+guid: 765afce1-ff06-4efc-bce2-621899c4bf25
+platform: iphone
+minsdk: 3.5.0.GA
