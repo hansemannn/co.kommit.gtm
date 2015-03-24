@@ -81,7 +81,7 @@ GTM.pushObject({"event", "click", "buttonName", "playMovie"});
 ### GTM.pushValue(key, object)
 
 ```
-GTM.pushObject("foo", {"bar": "baz"});
+GTM.pushValue("foo", {"bar": "baz"});
 ```
 
 ## Usage
@@ -124,7 +124,7 @@ cd iphone && python build.py
 - Support for multiple containers
 - Container preview
 - Callbacks
-- Migrate Cute Animals example from Android & iOS SDK :)
+- Port of `<android-sdk-directory>/extras/google/google_play_services/tagmanager/cuteanimals`
 
 ## Recomendations
 
