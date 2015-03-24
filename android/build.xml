@@ -6,27 +6,6 @@
 
     <property file="build.properties" />
 
-    <!-- Copy documentation subdirectories -->
-    <!-- <mkdir dir="${basedir}/documentation"/>
-    <copy todir="${basedir}/documentation">
-        <fileset dir="${basedir}/../documentation"/>
-    </copy> -->
-
-    <!-- Copy example subdirectories -->
-    <!-- <mkdir dir="${basedir}/../example"/>
-    <copy todir="${basedir}/../example">
-        <fileset dir="${basedir}/../example"/>
-    </copy> -->
-
-    <!-- Copy assets subdirectories -->
-    <!-- <mkdir dir="${basedir}/assets"/>
-    <copy todir="${basedir}/assets">
-        <fileset dir="${basedir}/../assets"/>
-    </copy> -->
-
-    <!-- Copy license -->
-    <!-- <copy todir="${basedir}" file="${basedir}/../LICENSE"/> -->
-
     <target name="cleancopy" description="Delete old copies">
         <delete dir="${basedir}/documentation"/>
         <delete dir="${basedir}/example"/>
@@ -35,4 +14,33 @@
     </target>
 
     <import file="${titanium.platform}/../module/android/build.xml"/>
+    <target name="dist" depends="compile,pre.dist" description="Generate a distributable module JAR">
+        <ti.string property="module.id" string="${manifest.moduleid}" tolowercase="true"/>
+        <property name="module.jar" location="${dist}/${ant.project.name}.jar"/>
+        <jar destfile="${module.jar}">
+            <fileset dir="${classes}"/>
+            <fileset dir="${ti.module.root}" includes="assets/**" excludes="assets/README assets/*.js assets/**/*.js"/>
+        </jar>
+        <antcall target="post.jar"/>
+        <property name="zip.prefix" value="modules/android/${module.id}/${manifest.version}"/>
+        <antcall target="docgen"/>
+        <antcall target="check.respackage"/>
+
+        <zip destfile="${dist}/${module.id}-android-${manifest.version}.zip">
+            <zipfileset file="${module.jar}" prefix="${zip.prefix}"/>
+            <zipfileset file="manifest" prefix="${zip.prefix}"/>
+            <zipfileset file="timodule.xml" prefix="${zip.prefix}"/>
+            <zipfileset dir="${lib}" includes="**/*.jar" prefix="${zip.prefix}/lib"/>
+            <zipfileset dir="${ti.module.root}" includes="LICENSE" prefix="${zip.prefix}"/>
+            <zipfileset file="${dist}/respackageinfo" prefix="${zip.prefix}"/>
+        </zip>
+        <antcall target="zip.libs"/>
+        <antcall target="zip.metadata"/>
+        <delete dir="${lib.expand.dir}" includeemptydirs="true" failonerror="false" deleteonexit="true"/>
+        <antcall target="clean.respackage" />
+        <antcall target="post.dist"/>
+    </target>
+    <target name="post.dist">
+        <unzip src="${dist}/${module.id}-android-${manifest.version}.zip" dest="${dist}/../../example"/>
+    </target>
 </project>
