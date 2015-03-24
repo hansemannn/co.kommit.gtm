@@ -1,0 +1,18 @@
+#
+# this is your module manifest and used by Titanium
+# during compilation, packaging, distribution, etc.
+#
+version: 1.0.0
+apiversion: 2
+architectures: armv7 arm64 i386 x86_64
+description: gtm-ios
+author: Cristian Cepeda
+license: MIT
+copyright: Copyright (c) 2015 by Kommit
+
+# these should not be edited
+name: gtm-ios
+moduleid: co.kommit.gtm
+guid: f7683663-3883-47fc-a475-50db054013b2
+platform: iphone
+minsdk: 3.5.0.GA
