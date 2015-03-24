@@ -31,6 +31,7 @@
             <zipfileset file="manifest" prefix="${zip.prefix}"/>
             <zipfileset file="timodule.xml" prefix="${zip.prefix}"/>
             <zipfileset dir="${lib}" includes="**/*.jar" prefix="${zip.prefix}/lib"/>
+            <zipfileset dir="${ti.module.root}" includes="platform/**" excludes="platform/README" prefix="${zip.prefix}"/>
             <zipfileset dir="${ti.module.root}" includes="LICENSE" prefix="${zip.prefix}"/>
             <zipfileset file="${dist}/respackageinfo" prefix="${zip.prefix}"/>
         </zip>
