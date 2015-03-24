@@ -1,3 +1,5 @@
+[![gitTio](http://gitt.io/badge.svg)](http://gitt.io/component/co.kommit.gtm)
+
 # Kommit Google Tag Manager Module
 
 ## Description
