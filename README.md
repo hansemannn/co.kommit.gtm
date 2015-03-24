@@ -10,6 +10,28 @@ Create a container in [http://www.google.com/tagmanager/](http://www.google.com/
 
 For more information [http://www.google.com/tagmanager/get-started.html](http://www.google.com/tagmanager/get-started.html)
 
+### Default container Data
+
+**For Android**
+
+```
+platform
+└── android
+    └── res
+        └── raw
+            ├── GTM_XYZZY_binary
+            └── GTM_XYZZY_json
+```
+
+**For iOS**
+
+```
+platform
+└── iphone
+    ├── GTM-XXXX.json <--- JSON
+    └── GTM-XXXX.plist <--- Binary
+```
+
 ## Accessing the gtm Module
 
 To access this module from JavaScript, you would do the following:
@@ -97,7 +119,13 @@ cd iphone && python build.py
 ## TODO
 
 - Support for multiple containers
-- Add default container data
+- Add default container data for iOS
+- Container preview
+
+
+## Recomendations
+
+- Download container data from your Tag Manager account
 
 
 ## License
