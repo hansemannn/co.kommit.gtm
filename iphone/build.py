@@ -230,12 +230,12 @@ def package_module(manifest,mf,config):
 	if os.path.exists(p):
 		zip_dir(zf,p,'%s/%s' % (modulepath,'assets'),['README'])
 
-	for dn in ('example','platform'):
-		p = os.path.join(cwd, dn)
-		if not os.path.exists(p):
-			p = os.path.join(cwd, '..', dn)
-		if os.path.exists(p):
-			zip_dir(zf,p,'%s/%s' % (modulepath,dn),['README'],True)
+	# for dn in ('example','platform'):
+	# 	p = os.path.join(cwd, dn)
+	# 	if not os.path.exists(p):
+	# 		p = os.path.join(cwd, '..', dn)
+	# 	if os.path.exists(p):
+	# 		zip_dir(zf,p,'%s/%s' % (modulepath,dn),['README'],True)
 
 	license_file = os.path.join(cwd,'LICENSE')
 	if not os.path.exists(license_file):
@@ -249,7 +249,7 @@ def package_module(manifest,mf,config):
 		zf.write(exports_file, '%s/%s' % (modulepath, exports_file))
 	zf.close()
 	os.rename(modulezip, "dist/%s" % modulezip)
-
+	subprocess.call(["unzip","-o", "dist/%s" % modulezip, "-d", "../example"])
 
 if __name__ == '__main__':
 	manifest,mf = validate_manifest()
