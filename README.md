@@ -66,7 +66,7 @@ Returns a Number representing the configuration value for the given key.
 
 Returns a Number representing the configuration value for the given key.
 
-### GTM.getLastRefreshtTime(key)
+### GTM.getLastRefreshtTime()
 
 Returns a Number with the last time (in milliseconds since midnight, January 1, 1970 UTC) that this container was refreshed from the network.
 
