@@ -1,4 +1,5 @@
 [![gitTio](http://gitt.io/badge.svg)](http://gitt.io/component/co.kommit.gtm)
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/kommitters/co.kommit.gtm?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 # Kommit Google Tag Manager Module
 
