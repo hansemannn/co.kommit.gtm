@@ -11,7 +11,6 @@ import org.appcelerator.kroll.KrollModule;
 import org.appcelerator.kroll.annotations.Kroll;
 import org.appcelerator.kroll.common.Log;
 import org.appcelerator.titanium.TiApplication;
-import org.appcelerator.titanium.TiContext;
 import org.appcelerator.titanium.util.TiRHelper;
 import org.appcelerator.titanium.util.TiRHelper.ResourceNotFoundException;
 
@@ -24,7 +23,6 @@ import com.google.android.gms.tagmanager.DataLayer;
 import com.google.android.gms.tagmanager.TagManager;
 import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.ResultCallback;
-import com.sun.xml.internal.xsom.impl.scd.Iterators.Map;
 
 @Kroll.module(name = "Gtm", id = "co.kommit.gtm")
 public class GtmModule extends KrollModule {
@@ -35,12 +33,8 @@ public class GtmModule extends KrollModule {
 
     @Kroll.constant public static final Object OBJECT_NOT_PRESENT = DataLayer.OBJECT_NOT_PRESENT;
 
-    public GtmModule() {
-        super();
-    }
-
     private Context context() {
-        return TiContext.getCurrentTiContext().getAndroidContext();
+        return TiApplication.getInstance().getApplicationContext();
     }
 
     private DataLayer dataLayer() {
@@ -62,11 +56,6 @@ public class GtmModule extends KrollModule {
         }
 
         return result;
-    }
-
-    @Kroll.onAppCreate
-    public static void onAppCreate(TiApplication app) {
-        Log.d(LCAT, "inside onAppCreate");
     }
 
     @Kroll.method
