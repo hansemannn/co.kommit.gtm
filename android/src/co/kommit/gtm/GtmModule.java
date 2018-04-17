@@ -4,6 +4,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Arrays;
+import java.math.BigDecimal;
 import java.util.concurrent.TimeUnit;
 
 import org.appcelerator.kroll.KrollDict;
@@ -29,7 +30,7 @@ public class GtmModule extends KrollModule {
 
     private static final String LCAT = "GtmModule";
 
-    private static final long TIMEOUT_FOR_CONTAINER_OPEN_MILLISECONDS = 2000;
+    private static final int TIMEOUT_FOR_CONTAINER_OPEN_MILLISECONDS = 2000;
 
     @Kroll.constant public static final Object OBJECT_NOT_PRESENT = DataLayer.OBJECT_NOT_PRESENT;
 
@@ -89,13 +90,13 @@ public class GtmModule extends KrollModule {
     }
 
     @Kroll.method
-    public long getLong(String key) {
-        return container().getLong(key);
+    public int getLong(String key) {
+        return new BigDecimal(container().getLong(key)).intValueExact();
     }
 
     @Kroll.method
-    public long getLastRefreshtTime() {
-        return container().getLastRefreshTime();
+    public int getLastRefreshtTime() {
+        return new BigDecimal(container().getLastRefreshTime()).intValueExact();
     }
 
     @Kroll.method
